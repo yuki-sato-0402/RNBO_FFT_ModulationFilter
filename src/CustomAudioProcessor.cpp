@@ -80,6 +80,7 @@ void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 ////このコールバック メソッドは、パラメータが変更されたときに AudioProcessorValueTreeStateによって呼び出されます。
 void CustomAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
 {
+ std::cout << "parameterID " << parameterID<< newValue << std::endl;
  rnboObject.setParameterValue (apvtsParamIdToRnboParamIndex[parameterID], newValue);
 }
 

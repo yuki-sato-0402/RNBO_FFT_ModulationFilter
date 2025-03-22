@@ -1322,8 +1322,8 @@ void gen_02_perform(
         number mul10_6 = (rdiv8_5 + freaqOffset) * expr1_0;
         auto tri12_8 = this->triangle(this->gen_02_phasor_7_next(mul10_6, 0), dutyCycle);
         number expr_1_9 = tri12_8 * expr2_1;
-        out1[(Index)i] = expr_1_9;
         out2[(Index)i] = expr_2_10;
+        out1[(Index)i] = expr_1_9;
     }
 }
 
@@ -1473,14 +1473,14 @@ void gen_01_perform(
         number expr_10 = 0;
         number expr_11 = 0;
         expr_10 = mul4_7 * rnbo_cos(angle8), expr_11 = mul4_7 * rnbo_sin(angle8);
-        out1[(Index)i] = expr_4;
-        out5[(Index)i] = expr_8;
-        out4[(Index)i] = expr_7;
-        out8[(Index)i] = expr_11;
         out6[(Index)i] = expr_9;
-        out2[(Index)i] = expr_5;
-        out7[(Index)i] = expr_10;
         out3[(Index)i] = expr_6;
+        out5[(Index)i] = expr_8;
+        out1[(Index)i] = expr_4;
+        out7[(Index)i] = expr_10;
+        out8[(Index)i] = expr_11;
+        out4[(Index)i] = expr_7;
+        out2[(Index)i] = expr_5;
         this->gen_01_del3_step();
         this->gen_01_del2_step();
         this->gen_01_del1_step();

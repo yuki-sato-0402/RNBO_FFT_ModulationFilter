@@ -21,7 +21,10 @@ private:
     juce::Slider dial1Slider;
     juce::Slider dial2Slider;
     juce::Slider dial3Slider;
-    juce::TextButton buttonA, buttonB;
+    //juce::TextButton buttonA, buttonB;
+    juce::ToggleButton buttonA   { "filterTypeA" },
+                       buttonB   { "filterTypeB" };
+
 
     juce::Label  label1;
     juce::Label  label2;
@@ -32,24 +35,24 @@ private:
     std::unique_ptr<SliderAttachment> dial1Attachment;
     std::unique_ptr<SliderAttachment> dial2Attachment;
     std::unique_ptr<SliderAttachment> dial3Attachment;
-    std::unique_ptr<ButtonAttachment> buttonAttachment;
-    std::unique_ptr<ButtonAttachment> buttonBttachment;
-    int selectedValue = 0;  // 0 = Option A, 1 = Option B
+    std::unique_ptr<ButtonAttachment> buttonAattachment;
+    //std::unique_ptr<ButtonAttachment> buttonBattachment;
+ 
+    //int selectedValue = 0;  // 0 = Option A, 1 = Option B
 
-    void setSelection(int value)
+    void updateToggleState (juce::Button* button, juce::String name)
     {
-        selectedValue = value;
+        auto state = button->getToggleState();
+        juce::String stateString = state ? "ON" : "OFF";
 
-        const bool isOptionA = (value == 0);
-
-        buttonA.setToggleState(isOptionA, juce::dontSendNotification);
-        buttonB.setToggleState(!isOptionA, juce::dontSendNotification);
-
-        buttonA.setColour(juce::TextButton::buttonColourId, isOptionA ? juce::Colours::green : juce::Colours::grey);
-        buttonB.setColour(juce::TextButton::buttonColourId, !isOptionA ? juce::Colours::green : juce::Colours::grey);
-
-        DBG("Selected Value: " << selectedValue); // デバッグ用
+        juce::Logger::outputDebugString (name + " Button changed to " + stateString);
     }
+
+    enum RadioButtonIds
+    {
+        FilterButtons = 1001
+    };
+
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomAudioEditor)
 };

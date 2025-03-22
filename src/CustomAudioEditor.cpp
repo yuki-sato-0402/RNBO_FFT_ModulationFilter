@@ -14,22 +14,16 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
    
     std::cout << "multype" << std::endl;
     //スライダーひAPVTSのパラメータを紐づけます。
-    buttonAttachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonA));
-    buttonBttachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonB));
-    addAndMakeVisible(buttonA);
-    addAndMakeVisible(buttonB);
+    buttonAattachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonA));
+    //buttonBattachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonB));
 
-    buttonA.setButtonText("Filter TypeA");
-    buttonB.setButtonText("Filter TypeB");
-    buttonA.setLookAndFeel(&lightLookAndFeel);
-    buttonB.setLookAndFeel(&lightLookAndFeel);
 
-    buttonA.setClickingTogglesState(true);
-    buttonB.setClickingTogglesState(true);
-
-    buttonA.onClick = [this]() { setSelection(0); };
-    buttonB.onClick = [this]() { setSelection(1); };
-    setSelection(0); // デフォルトは Option A
+    buttonA.onClick = [this] { updateToggleState (&buttonA,   "filterTypeA");  };
+    buttonB.onClick = [this] { updateToggleState (&buttonB,   "filterTypeB"); };
+    //setSelection(0); // デフォルトは Option A
+    
+    buttonA.setRadioGroupId (FilterButtons);
+    buttonB.setRadioGroupId (FilterButtons);
 
   
     //direction
@@ -37,7 +31,7 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
     std::cout << "direction" << std::endl;
     dial1Attachment.reset (new SliderAttachment (valueTreeState, "direction", dial1Slider));
     dial1Slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-    dial1Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial1Slider.getTextBoxWidth(), dial2Slider.getTextBoxHeight());
+    dial1Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial1Slider.getTextBoxWidth(), dial1Slider.getTextBoxHeight());
     dial1Slider.setLookAndFeel(&lightLookAndFeel);
     // スライダーの目盛りを白色に設定
     dial1Slider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::white);
