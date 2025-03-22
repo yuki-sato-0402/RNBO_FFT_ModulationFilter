@@ -1,0 +1,19 @@
+[
+  {
+    "name": "untitled",
+    "preset": {
+      "direction": {
+        "value": 0
+      },
+      "dutyCycle": {
+        "value": 0.5
+      },
+      "freaqOffset": {
+        "value": 0
+      },
+      "multype": {
+        "value": 0
+      }
+    }
+  }
+]
