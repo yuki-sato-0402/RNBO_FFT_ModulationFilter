@@ -56,10 +56,10 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
     label2.setText ("dutyCycle", juce::dontSendNotification);
     label2.setJustificationType(juce::Justification::centred);
     
-    //freaqOffset
+    //freqOffset
     addAndMakeVisible(dial3Slider);
-    std::cout << "freaqOffset" << std::endl;
-    dial3Attachment.reset (new SliderAttachment (valueTreeState, "freaqOffset", dial3Slider));
+    std::cout << "freqOffset" << std::endl;
+    dial3Attachment.reset (new SliderAttachment (valueTreeState, "freqOffset", dial3Slider));
     dial3Slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);     
     dial3Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial3Slider.getTextBoxWidth(), dial3Slider.getTextBoxHeight());
     dial3Slider.setLookAndFeel(&lightLookAndFeel);
@@ -67,7 +67,7 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
 
 
     addAndMakeVisible(label3);
-    label3.setText ("freaq", juce::dontSendNotification);
+    label3.setText ("freq", juce::dontSendNotification);
     label3.setJustificationType(juce::Justification::centred);
     
     setSize(400, 300);

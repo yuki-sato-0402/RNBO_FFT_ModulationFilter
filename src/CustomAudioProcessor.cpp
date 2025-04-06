@@ -17,7 +17,7 @@ parameters(*this, nullptr, juce::Identifier("PARAMETERS"),
       juce::NormalisableRange<float>(0.f, 1.f, 0.01f),0.f),
       std::make_unique<juce::AudioParameterFloat>(ParameterID { "multype",  1}, "multype",
       juce::NormalisableRange<float>(0, 1, 1),0),
-      std::make_unique<juce::AudioParameterFloat>(ParameterID { "freaqOffset",  1}, "freaqOffset",
+      std::make_unique<juce::AudioParameterFloat>(ParameterID { "freqOffset",  1}, "freqOffset",
       juce::NormalisableRange<float>(0.f, 1000.f, 0.01f),0.f),
       std::make_unique<juce::AudioParameterFloat>(ParameterID { "dutyCycle",  1}, "dutyCycle",
       juce::NormalisableRange<float>(0.f, 1.f, 0.01f),0.5f)
