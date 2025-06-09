@@ -8,7 +8,7 @@
       "dutyCycle": {
         "value": 0.5
       },
-      "freaqOffset": {
+      "freqOffset": {
         "value": 0
       },
       "multype": {

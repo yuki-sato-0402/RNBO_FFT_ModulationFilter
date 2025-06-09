@@ -327,7 +327,7 @@ void process(
     this->gen_02_perform(
         this->signals[4],
         this->gen_02_multype,
-        this->gen_02_freaqOffset,
+        this->gen_02_freqOffset,
         this->gen_02_dutyCycle,
         this->signals[5],
         this->signals[6],
@@ -597,7 +597,7 @@ void getPreset(PatcherStateInterface& preset) {
     preset["__presetid"] = "rnbo";
     this->param_01_getPresetValue(getSubState(preset, "direction"));
     this->param_02_getPresetValue(getSubState(preset, "multype"));
-    this->param_03_getPresetValue(getSubState(preset, "freaqOffset"));
+    this->param_03_getPresetValue(getSubState(preset, "freqOffset"));
     this->param_04_getPresetValue(getSubState(preset, "dutyCycle"));
 }
 
@@ -605,7 +605,7 @@ void setPreset(MillisecondTime time, PatcherStateInterface& preset) {
     this->updateTime(time);
     this->param_01_setPresetValue(getSubState(preset, "direction"));
     this->param_02_setPresetValue(getSubState(preset, "multype"));
-    this->param_03_setPresetValue(getSubState(preset, "freaqOffset"));
+    this->param_03_setPresetValue(getSubState(preset, "freqOffset"));
     this->param_04_setPresetValue(getSubState(preset, "dutyCycle"));
 }
 
@@ -727,7 +727,7 @@ ConstCharPointer getParameterName(ParameterIndex index) const {
         }
     case 2:
         {
-        return "freaqOffset";
+        return "freqOffset";
         }
     case 3:
         {
@@ -752,7 +752,7 @@ ConstCharPointer getParameterId(ParameterIndex index) const {
         }
     case 2:
         {
-        return "freaqOffset";
+        return "freqOffset";
         }
     case 3:
         {
@@ -1048,7 +1048,7 @@ void param_03_value_set(number v) {
         this->param_03_lastValue = this->param_03_value;
     }
 
-    this->gen_02_freaqOffset_set(v);
+    this->gen_02_freqOffset_set(v);
 }
 
 void param_04_value_set(number v) {
@@ -1192,8 +1192,8 @@ static number param_03_value_constrain(number v) {
     return v;
 }
 
-void gen_02_freaqOffset_set(number v) {
-    this->gen_02_freaqOffset = v;
+void gen_02_freqOffset_set(number v) {
+    this->gen_02_freqOffset = v;
 }
 
 static number param_04_value_constrain(number v) {
@@ -1294,7 +1294,7 @@ void fftstream_tilde_01_perform(
 void gen_02_perform(
     const Sample * in1,
     number multype,
-    number freaqOffset,
+    number freqOffset,
     number dutyCycle,
     SampleValue * out1,
     SampleValue * out2,
@@ -1319,11 +1319,11 @@ void gen_02_perform(
             expr2_1 = sub6_4;
         }
 
-        number mul10_6 = (rdiv8_5 + freaqOffset) * expr1_0;
+        number mul10_6 = (rdiv8_5 + freqOffset) * expr1_0;
         auto tri12_8 = this->triangle(this->gen_02_phasor_7_next(mul10_6, 0), dutyCycle);
         number expr_1_9 = tri12_8 * expr2_1;
-        out2[(Index)i] = expr_2_10;
         out1[(Index)i] = expr_1_9;
+        out2[(Index)i] = expr_2_10;
     }
 }
 
@@ -1475,12 +1475,12 @@ void gen_01_perform(
         expr_10 = mul4_7 * rnbo_cos(angle8), expr_11 = mul4_7 * rnbo_sin(angle8);
         out6[(Index)i] = expr_9;
         out3[(Index)i] = expr_6;
-        out5[(Index)i] = expr_8;
-        out1[(Index)i] = expr_4;
         out7[(Index)i] = expr_10;
-        out8[(Index)i] = expr_11;
         out4[(Index)i] = expr_7;
+        out8[(Index)i] = expr_11;
+        out1[(Index)i] = expr_4;
         out2[(Index)i] = expr_5;
+        out5[(Index)i] = expr_8;
         this->gen_01_del3_step();
         this->gen_01_del2_step();
         this->gen_01_del1_step();
@@ -3138,7 +3138,7 @@ void assign_defaults()
     ifftstream_tilde_04_imagIn = 0;
     gen_02_in1 = 0;
     gen_02_multype = 0;
-    gen_02_freaqOffset = 0;
+    gen_02_freqOffset = 0;
     gen_02_dutyCycle = 0;
     param_01_value = 0;
     param_02_value = 0;
@@ -3286,7 +3286,7 @@ void assign_defaults()
     number ifftstream_tilde_04_imagIn;
     number gen_02_in1;
     number gen_02_multype;
-    number gen_02_freaqOffset;
+    number gen_02_freqOffset;
     number gen_02_dutyCycle;
     number param_01_value;
     number param_02_value;
