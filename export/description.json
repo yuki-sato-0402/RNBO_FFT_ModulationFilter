@@ -43,8 +43,8 @@
     {
       "type": "ParameterTypeNumber",
       "index": 2,
-      "name": "freaqOffset",
-      "paramId": "freaqOffset",
+      "name": "freqOffset",
+      "paramId": "freqOffset",
       "minimum": 0,
       "maximum": 1000,
       "exponent": 1,
