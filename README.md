@@ -1,5 +1,5 @@
-# Rnbo_FFT_ModulationFilter
-This is a Filter combining fft~ and oscillator by Rnbo (Max Msp).
+# RNBO_FFT_ModulationFilter
+This is a Filter combining fft~ and oscillator by RNBO (Max Msp).
 I have also arranged the code to use the [AudioProcessorValueTreeState](https://docs.juce.com/master/classAudioProcessorValueTreeState.html).
 Built from the [rnbo.example.juce](https://github.com/Cycling74/rnbo.example.juce).  
 
