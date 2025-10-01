@@ -10,7 +10,6 @@ CustomAudioProcessor::CustomAudioProcessor()
                   .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                   #endif
                   ),
-//コンストラクタの イニシャライザリスト で初期化
 parameters(*this, nullptr, juce::Identifier("PARAMETERS"),
     juce::AudioProcessorValueTreeState::ParameterLayout {
       std::make_unique<juce::AudioParameterFloat>(ParameterID { "direction",  1}, "direction",
@@ -77,7 +76,7 @@ void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
      );     
 }
 
-////このコールバック メソッドは、パラメータが変更されたときに AudioProcessorValueTreeStateによって呼び出されます。
+
 void CustomAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
 {
  std::cout << "parameterID " << parameterID<< newValue << std::endl;
@@ -86,10 +85,7 @@ void CustomAudioProcessor::parameterChanged(const juce::String& parameterID, flo
 
 juce::AudioProcessorEditor* CustomAudioProcessor::createEditor()
 {
-    //AudioProcessorEditor側でAudioProcessorValueTreeStateにアクセスするための方法が必要。
    return new CustomAudioEditor (*this,  parameters);
-    //RNBOのデフォルトエディター, 標準的なパラメータ表示, 追加のカスタマイズが限定的
-  // return RNBO::JuceAudioProcessor::createEditor();
 }
 
 bool CustomAudioProcessor::hasEditor() const

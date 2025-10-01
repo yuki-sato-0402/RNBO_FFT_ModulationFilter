@@ -2,38 +2,24 @@
 #include "CustomAudioEditor.h"
 
 CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
-    : AudioProcessorEditor (&p), valueTreeState(vts)// 参照メンバーを初期化（必須）
+    : AudioProcessorEditor (&p), valueTreeState(vts)
 {
-
-    // ルック＆フィールの設定
     lightLookAndFeel.setColourScheme(juce::LookAndFeel_V4::getLightColourScheme());
     
-    //buttonA
     addAndMakeVisible(buttonA);
     addAndMakeVisible(buttonB);
-   
-    std::cout << "multype" << std::endl;
-    //スライダーひAPVTSのパラメータを紐づけます。
+
     buttonAattachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonA));
-    //buttonBattachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonB));
-
-
     buttonA.onClick = [this] { updateToggleState (&buttonA,   "filterTypeA");  };
     buttonB.onClick = [this] { updateToggleState (&buttonB,   "filterTypeB"); };
-    //setSelection(0); // デフォルトは Option A
-    
     buttonA.setRadioGroupId (FilterButtons);
     buttonB.setRadioGroupId (FilterButtons);
 
-  
-    //direction
     addAndMakeVisible(dial1Slider);
-    std::cout << "direction" << std::endl;
     dial1Attachment.reset (new SliderAttachment (valueTreeState, "direction", dial1Slider));
     dial1Slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     dial1Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial1Slider.getTextBoxWidth(), dial1Slider.getTextBoxHeight());
     dial1Slider.setLookAndFeel(&lightLookAndFeel);
-    // スライダーの目盛りを白色に設定
     dial1Slider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::white);
 
 
@@ -41,30 +27,23 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
     label1.setText ("direction", juce::dontSendNotification);
     label1.setJustificationType(juce::Justification::centred);
     
-    //dutyCycle
     addAndMakeVisible(dial2Slider);
-    std::cout << "dutyCycle" << std::endl;
     dial2Attachment.reset (new SliderAttachment (valueTreeState, "dutyCycle", dial2Slider));
     dial2Slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     dial2Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial2Slider.getTextBoxWidth(), dial2Slider.getTextBoxHeight());
     dial2Slider.setLookAndFeel(&lightLookAndFeel);
-    // スライダーの目盛りを白色に設定
     dial2Slider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::white);
-
 
     addAndMakeVisible(label2);
     label2.setText ("dutyCycle", juce::dontSendNotification);
     label2.setJustificationType(juce::Justification::centred);
     
-    //freqOffset
     addAndMakeVisible(dial3Slider);
-    std::cout << "freqOffset" << std::endl;
     dial3Attachment.reset (new SliderAttachment (valueTreeState, "freqOffset", dial3Slider));
     dial3Slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);     
     dial3Slider.setTextBoxStyle (juce::Slider::TextBoxBelow, false, dial3Slider.getTextBoxWidth(), dial3Slider.getTextBoxHeight());
     dial3Slider.setLookAndFeel(&lightLookAndFeel);
     dial3Slider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::white);
-
 
     addAndMakeVisible(label3);
     label3.setText ("freq", juce::dontSendNotification);
@@ -76,12 +55,11 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
 
 void CustomAudioEditor::paint (Graphics& g)
 {
-    g.fillAll(juce::Colours::black); // 背景を黒に設定
+    g.fillAll(juce::Colours::black);
 }
 
 void CustomAudioEditor::resized()
 {
-    //エディター全体の領域を取得
     auto area = getLocalBounds();
 
     const int componentWidth1 = (area.getWidth() - 40)/3;
