@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 90.0, 225.0, 920.0, 641.0 ],
+		"rect" : [ -45.0, -843.0, 920.0, 641.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -238,7 +238,7 @@
 						}
 ,
 						"classnamespace" : "rnbo",
-						"rect" : [ 90.0, 351.0, 795.0, 493.0 ],
+						"rect" : [ 135.0, -757.0, 795.0, 493.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -335,19 +335,19 @@
 									"patching_rect" : [ 607.0, 357.0, 149.0, 37.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"exponent" : 1.0,
-										"fromnormalized" : "",
-										"meta" : "",
 										"tonormalized" : "",
-										"displayorder" : "-",
-										"preset" : 1,
-										"displayname" : "",
-										"unit" : "",
-										"enum" : "",
-										"steps" : 0.0,
-										"sendinit" : 1,
 										"order" : "0",
-										"ctlin" : 0.0
+										"meta" : "",
+										"preset" : 1,
+										"enum" : "",
+										"displayorder" : "-",
+										"steps" : 0.0,
+										"displayname" : "",
+										"sendinit" : 1,
+										"ctlin" : 0.0,
+										"fromnormalized" : "",
+										"exponent" : 1.0,
+										"unit" : ""
 									}
 ,
 									"rnbo_serial" : 1,
@@ -811,19 +811,19 @@
 									"patching_rect" : [ 607.0, 271.0, 144.0, 37.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"exponent" : 1.0,
-										"fromnormalized" : "",
-										"meta" : "",
 										"tonormalized" : "",
-										"displayorder" : "-",
-										"preset" : 1,
-										"displayname" : "",
-										"unit" : "",
-										"enum" : "",
-										"steps" : 0.0,
-										"sendinit" : 1,
 										"order" : "0",
-										"ctlin" : 0.0
+										"meta" : "",
+										"preset" : 1,
+										"enum" : "",
+										"displayorder" : "-",
+										"steps" : 0.0,
+										"displayname" : "",
+										"sendinit" : 1,
+										"ctlin" : 0.0,
+										"fromnormalized" : "",
+										"exponent" : 1.0,
+										"unit" : ""
 									}
 ,
 									"rnbo_serial" : 2,
@@ -1233,7 +1233,7 @@
 											}
 ,
 											"classnamespace" : "dsp.gen",
-											"rect" : [ 702.0, 246.0, 443.0, 530.0 ],
+											"rect" : [ 43.0, -518.0, 443.0, 530.0 ],
 											"bglocked" : 0,
 											"openinpresentation" : 0,
 											"default_fontsize" : 12.0,
@@ -1265,9 +1265,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 1",
-														"patching_rect" : [ 10.0, 497.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-2",
+														"numinlets" : 1,
+														"patching_rect" : [ 10.0, 497.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -1275,15 +1275,15 @@
 , 												{
 													"box" : 													{
 														"maxclass" : "codebox",
-														"outlettype" : [ "", "" ],
-														"fontname" : "<Monospaced>",
-														"patching_rect" : [ 10.0, 56.0, 401.0, 422.0 ],
-														"fontface" : 0,
-														"numinlets" : 1,
 														"id" : "obj-1",
 														"fontsize" : 12.0,
+														"numinlets" : 1,
+														"fontname" : "<Monospaced>",
+														"patching_rect" : [ 10.0, 56.0, 401.0, 422.0 ],
 														"numoutlets" : 2,
-														"code" : "Param dutyCycle(0);\nParam freqOffset(0);\nParam multype(0);\nexpr1 = 0;\nexpr2 = 0;\r\n\nmul3 = vectorsize * 8;\ngt4 = in1 > mul3;\nsub6 = (gt4 * 2) - 1;\r\n\nif(multype == 0) {\n\texpr1 = sub6;\n\texpr2 = 1;\n}else{\r\n\texpr1 = 1;\n\texpr2 = sub6;\n}\r\n\nrdiv8 = 1 / (mul3 / SAMPLERATE);\nmul10 = (rdiv8 + freqOffset)* expr1;\ntri12 = triangle(phasor(mul10, 0), dutyCycle);\nout1 = tri12 * expr2;\r\nout2 = mul3;"
+														"fontface" : 0,
+														"outlettype" : [ "", "" ],
+														"code" : "Param dutyCycle(0);\nParam freqOffset(0);\nParam multype(0);\nexpr1 = 0;\nexpr2 = 0;\r\n\nmul3 = vectorsize * 8; //fftsize/2\ngt4 = in1 > mul3;\nsub6 = (gt4 * 2) - 1;\r\n\nif(multype == 0) {\n\texpr1 = sub6;\n\texpr2 = 1;\n}else{\r\n\texpr1 = 1;\n\texpr2 = sub6;\n}\r\n\nrdiv8 = 1 / (mul3 / SAMPLERATE);\nmul10 = (rdiv8 + freqOffset)* expr1;\ntri12 = triangle(phasor(mul10, 0), dutyCycle);\nout1 = tri12 * expr2;\r\nout2 = mul3;"
 													}
 
 												}
@@ -1291,9 +1291,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 2",
-														"patching_rect" : [ 392.0, 497.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-40",
+														"numinlets" : 1,
+														"patching_rect" : [ 267.0, 497.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -1302,11 +1302,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 1",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 10.0, 9.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-7",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 10.0, 9.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -1559,8 +1559,8 @@
 									"patching_rect" : [ 484.0, 253.0, 117.0, 23.0 ],
 									"rnbo_classname" : "ifft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1579,8 +1579,8 @@
 									"patching_rect" : [ 379.0, 102.0, 114.0, 23.0 ],
 									"rnbo_classname" : "fft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1599,8 +1599,8 @@
 									"patching_rect" : [ 327.0, 253.0, 103.0, 23.0 ],
 									"rnbo_classname" : "ifft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 2,
@@ -1619,8 +1619,8 @@
 									"patching_rect" : [ 256.0, 102.0, 100.0, 23.0 ],
 									"rnbo_classname" : "fft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 2,
@@ -1654,8 +1654,8 @@
 									"patching_rect" : [ 169.0, 253.0, 117.0, 23.0 ],
 									"rnbo_classname" : "ifft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 3,
@@ -1673,7 +1673,7 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 607.0, 235.0, 115.0, 23.0 ],
 									"rnbo_classname" : "setparam",
-									"rnbo_serial" : 5,
+									"rnbo_serial" : 3,
 									"rnbo_uniqueid" : "setparam_obj-13",
 									"rnboinfo" : 									{
 										"needsInstanceInfo" : 1,
@@ -1732,22 +1732,22 @@
 									"patching_rect" : [ 607.0, 184.0, 183.0, 37.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"exponent" : 1.0,
-										"fromnormalized" : "",
-										"meta" : "",
 										"tonormalized" : "",
-										"displayorder" : "-",
-										"preset" : 1,
-										"displayname" : "",
-										"unit" : "",
-										"enum" : "",
-										"steps" : 0.0,
-										"sendinit" : 1,
 										"order" : "0",
-										"ctlin" : 0.0
+										"meta" : "",
+										"preset" : 1,
+										"enum" : "",
+										"displayorder" : "-",
+										"steps" : 0.0,
+										"displayname" : "",
+										"sendinit" : 1,
+										"ctlin" : 0.0,
+										"fromnormalized" : "",
+										"exponent" : 1.0,
+										"unit" : ""
 									}
 ,
-									"rnbo_serial" : 5,
+									"rnbo_serial" : 3,
 									"rnbo_uniqueid" : "freqOffset",
 									"rnboinfo" : 									{
 										"needsInstanceInfo" : 1,
@@ -2208,19 +2208,19 @@
 									"patching_rect" : [ 607.0, 95.0, 133.0, 37.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"exponent" : 1.0,
-										"fromnormalized" : "",
-										"meta" : "",
 										"tonormalized" : "",
-										"displayorder" : "-",
-										"preset" : 1,
-										"displayname" : "",
-										"unit" : "",
-										"enum" : "",
-										"steps" : 0.0,
-										"sendinit" : 1,
 										"order" : "0",
-										"ctlin" : 0.0
+										"meta" : "",
+										"preset" : 1,
+										"enum" : "",
+										"displayorder" : "-",
+										"steps" : 0.0,
+										"displayname" : "",
+										"sendinit" : 1,
+										"ctlin" : 0.0,
+										"fromnormalized" : "",
+										"exponent" : 1.0,
+										"unit" : ""
 									}
 ,
 									"rnbo_serial" : 4,
@@ -2914,8 +2914,8 @@
 									"patching_rect" : [ 134.0, 102.0, 114.0, 23.0 ],
 									"rnbo_classname" : "fft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 3,
@@ -3034,7 +3034,7 @@
 											}
 ,
 											"classnamespace" : "dsp.gen",
-											"rect" : [ 954.0, 184.0, 469.0, 578.0 ],
+											"rect" : [ 884.0, -734.0, 469.0, 578.0 ],
 											"bglocked" : 0,
 											"openinpresentation" : 0,
 											"default_fontsize" : 12.0,
@@ -3066,11 +3066,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 10",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 424.0, 43.0, 35.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-6",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 424.0, 43.0, 35.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3078,25 +3078,25 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 9",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 380.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-5",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 380.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
 , 												{
 													"box" : 													{
 														"maxclass" : "codebox",
-														"outlettype" : [ "", "", "", "", "", "", "", "" ],
-														"fontname" : "<Monospaced>",
-														"patching_rect" : [ 28.0, 86.0, 415.0, 440.0 ],
-														"fontface" : 0,
-														"numinlets" : 10,
 														"id" : "obj-3",
 														"fontsize" : 12.0,
+														"numinlets" : 10,
+														"fontname" : "<Monospaced>",
+														"patching_rect" : [ 28.0, 86.0, 415.0, 440.0 ],
 														"numoutlets" : 8,
+														"fontface" : 0,
+														"outlettype" : [ "", "", "", "", "", "", "", "" ],
 														"code" : "Param direction(0);\nDelay del1(samplerate);\nDelay del2(samplerate);\nDelay del3(samplerate);\r\nradius1, angle2 = cartopol(in1, in2);\nradius3, angle4 = cartopol(in3, in4);\r\nradius5, angle6 = cartopol(in5, in6);\nradius7, angle8 = cartopol(in7, in8);\r\n\r\nscale1 = scale(direction, 0, 1, 0, in10, 1);\r\n\r\ndel1.write(in9);\r\ntap_19 = del1.read(scale1);\r\ndel3.write(in9);\r\ntap_27 = del3.read(in10);\ndel2.write(tap_27);\r\ntap_23 = del2.read(scale1);\r\n\r\nmul1 = radius1 * tap_23;\r\nmul2 = radius3 * tap_19;\r\nmul3 = radius5 * tap_23;\nmul4 = radius7 * tap_19;\r\n\r\nout1, out2 = poltocar(mul1, angle2);\r\nout3, out4 = poltocar(mul2, angle4);\r\nout5, out6 = poltocar(mul3, angle6);\r\nout7, out8 = poltocar(mul4, angle8);"
 													}
 
@@ -3105,9 +3105,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 8",
-														"patching_rect" : [ 424.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-61",
+														"numinlets" : 1,
+														"patching_rect" : [ 424.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3116,11 +3116,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 7",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 292.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-62",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 292.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3128,11 +3128,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 8",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 336.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-63",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 336.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3140,9 +3140,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 7",
-														"patching_rect" : [ 367.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-64",
+														"numinlets" : 1,
+														"patching_rect" : [ 367.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3151,9 +3151,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 6",
-														"patching_rect" : [ 311.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-55",
+														"numinlets" : 1,
+														"patching_rect" : [ 311.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3162,11 +3162,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 5",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 204.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-56",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 204.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3174,11 +3174,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 6",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 248.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-57",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 248.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3186,9 +3186,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 5",
-														"patching_rect" : [ 254.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-58",
+														"numinlets" : 1,
+														"patching_rect" : [ 254.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3197,9 +3197,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 4",
-														"patching_rect" : [ 198.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-49",
+														"numinlets" : 1,
+														"patching_rect" : [ 198.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3208,11 +3208,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 3",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 116.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-50",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 116.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3220,11 +3220,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 4",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 160.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-51",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 160.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3232,9 +3232,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 3",
-														"patching_rect" : [ 141.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-52",
+														"numinlets" : 1,
+														"patching_rect" : [ 141.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3243,9 +3243,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 2",
-														"patching_rect" : [ 85.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-7",
+														"numinlets" : 1,
+														"patching_rect" : [ 85.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3254,11 +3254,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 1",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 28.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-1",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 28.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3266,11 +3266,11 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "in 2",
-														"outlettype" : [ "" ],
-														"patching_rect" : [ 72.0, 43.0, 28.0, 22.0 ],
-														"numinlets" : 0,
 														"id" : "obj-2",
-														"numoutlets" : 1
+														"numinlets" : 0,
+														"patching_rect" : [ 72.0, 43.0, 28.0, 22.0 ],
+														"numoutlets" : 1,
+														"outlettype" : [ "" ]
 													}
 
 												}
@@ -3278,9 +3278,9 @@
 													"box" : 													{
 														"maxclass" : "newobj",
 														"text" : "out 1",
-														"patching_rect" : [ 28.0, 541.0, 35.0, 22.0 ],
-														"numinlets" : 1,
 														"id" : "obj-4",
+														"numinlets" : 1,
+														"patching_rect" : [ 28.0, 541.0, 35.0, 22.0 ],
 														"numoutlets" : 0
 													}
 
@@ -3624,8 +3624,8 @@
 									"patching_rect" : [ 12.0, 253.0, 103.0, 23.0 ],
 									"rnbo_classname" : "ifft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 4,
@@ -3644,8 +3644,8 @@
 									"patching_rect" : [ 11.0, 102.0, 100.0, 23.0 ],
 									"rnbo_classname" : "fft~",
 									"rnbo_extra_attributes" : 									{
-										"win_bufname" : "RNBODefaultFftWindow",
-										"window" : "rectangular"
+										"window" : "rectangular",
+										"win_bufname" : "RNBODefaultFftWindow"
 									}
 ,
 									"rnbo_serial" : 4,
@@ -3979,8 +3979,14 @@
 ,
 					"patching_rect" : [ 37.0, 185.0, 40.0, 22.0 ],
 					"rnboattrcache" : 					{
-						"multype" : 						{
-							"label" : "multype",
+						"dutyCycle" : 						{
+							"label" : "dutyCycle",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"freqOffset" : 						{
+							"label" : "freqOffset",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
@@ -3991,14 +3997,8 @@
 							"parsestring" : ""
 						}
 ,
-						"dutyCycle" : 						{
-							"label" : "dutyCycle",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"freqOffset" : 						{
-							"label" : "freqOffset",
+						"multype" : 						{
+							"label" : "multype",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
@@ -4042,11 +4042,11 @@
 							}
 ,
 							"dutyCycle" : 							{
-								"value" : 0.5
+								"value" : 0.0
 							}
 ,
 							"direction" : 							{
-								"value" : 0.0
+								"value" : 1.0
 							}
 ,
 							"__presetid" : "4b0a76af-fdaa-11ef-b6af-acde48001122"
@@ -4073,11 +4073,11 @@
 										}
 ,
 										"dutyCycle" : 										{
-											"value" : 0.5
+											"value" : 0.0
 										}
 ,
 										"direction" : 										{
-											"value" : 0.0
+											"value" : 1.0
 										}
 ,
 										"__presetid" : "4b0a76af-fdaa-11ef-b6af-acde48001122"
