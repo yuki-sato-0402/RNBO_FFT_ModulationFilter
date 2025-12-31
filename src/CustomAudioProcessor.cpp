@@ -95,7 +95,7 @@ bool CustomAudioProcessor::hasEditor() const
 
 
 const juce::String CustomAudioProcessor::getName() const{
-    return "Rnbo_FourierSeriesExpansionSynthesizer";
+    return "RNBO_FFT_ModulationFilter";
 }
 
 bool CustomAudioProcessor::acceptsMidi() const
