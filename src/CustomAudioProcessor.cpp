@@ -41,8 +41,8 @@ parameters(*this, nullptr, juce::Identifier("PARAMETERS"),
 
       // If you hit these assertions then you need to fix the incorrect apvts
       // parameter range in createParameterLayout().
-      jassert (info.min == parameters.getParameterRange (paramID).start);
-      jassert (info.max == parameters.getParameterRange (paramID).end);
+      jassert (std::abs (info.min - parameters.getParameterRange (paramID).start) < 1e-5f);
+      jassert (std::abs (info.max - parameters.getParameterRange (paramID).end) < 1e-5f);
 
       apvtsParamIdToRnboParamIndex[paramID] = i;
     

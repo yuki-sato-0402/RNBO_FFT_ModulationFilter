@@ -9,7 +9,7 @@ public:
     void paint (Graphics& g) override;
     void resized() override; 
     typedef juce::AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
-    typedef juce::AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
+    //typedef juce::AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 
 private:
     juce::AudioProcessorValueTreeState& valueTreeState; // ✅ Hold by reference
@@ -19,8 +19,8 @@ private:
     juce::Slider dial1Slider;
     juce::Slider dial2Slider;
     juce::Slider dial3Slider;
-    juce::ToggleButton buttonA   { "filterTypeA" },
-                       buttonB   { "filterTypeB" };
+    juce::TextButton AButton;
+    juce::TextButton BButton;
 
     juce::Label  label1;
     juce::Label  label2;
@@ -29,20 +29,8 @@ private:
     std::unique_ptr<SliderAttachment> dial1Attachment;
     std::unique_ptr<SliderAttachment> dial2Attachment;
     std::unique_ptr<SliderAttachment> dial3Attachment;
-    std::unique_ptr<ButtonAttachment> buttonAattachment;
-
-    void updateToggleState (juce::Button* button, juce::String name)
-    {
-        auto state = button->getToggleState();
-        juce::String stateString = state ? "ON" : "OFF";
-
-        juce::Logger::outputDebugString (name + " Button changed to " + stateString);
-    }
-
-    enum RadioButtonIds
-    {
-        FilterButtons = 1001
-    };
+    //std::unique_ptr<ButtonAttachment> buttonAattachment;
+    //std::unique_ptr<ButtonAttachment> buttonBattachment;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomAudioEditor)
 };

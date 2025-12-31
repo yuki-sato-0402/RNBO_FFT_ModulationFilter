@@ -15,6 +15,7 @@
       "displayName": "",
       "unit": "",
       "order": 0,
+      "displayorder": "-",
       "debug": false,
       "visible": true,
       "signalIndex": null,
@@ -35,6 +36,7 @@
       "displayName": "",
       "unit": "",
       "order": 0,
+      "displayorder": "-",
       "debug": false,
       "visible": true,
       "signalIndex": null,
@@ -55,6 +57,7 @@
       "displayName": "",
       "unit": "",
       "order": 0,
+      "displayorder": "-",
       "debug": false,
       "visible": true,
       "signalIndex": null,
@@ -75,6 +78,7 @@
       "displayName": "",
       "unit": "",
       "order": 0,
+      "displayorder": "-",
       "debug": false,
       "visible": true,
       "signalIndex": null,
@@ -86,8 +90,9 @@
   "numSignalOutParameters": 0,
   "numInputChannels": 2,
   "numOutputChannels": 2,
-  "numMidiInputPorts": 0,
+  "numMidiInputPorts": 1,
   "numMidiOutputPorts": 0,
+  "transportUsed": false,
   "externalDataRefs": [
     {
       "id": "RNBODefaultFftWindow",
@@ -110,6 +115,9 @@
       "index": 2,
       "tag": "in2",
       "meta": ""
+    },
+    {
+      "type": "midi"
     }
   ],
   "outlets": [
@@ -132,7 +140,7 @@
     "filename": "FFTfilter_rnbo.maxpat",
     "rnboobjname": "rnbomatic",
     "maxversion": "8.6.2",
-    "rnboversion": "1.2.6",
+    "rnboversion": "1.4.2",
     "name": "untitled"
   }
 }

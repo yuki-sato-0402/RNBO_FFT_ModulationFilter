@@ -6,14 +6,32 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor& p, juce::AudioProces
 {
     lightLookAndFeel.setColourScheme(juce::LookAndFeel_V4::getLightColourScheme());
     
-    addAndMakeVisible(buttonA);
-    addAndMakeVisible(buttonB);
-
-    buttonAattachment.reset (new ButtonAttachment (valueTreeState, "multype", buttonA));
-    buttonA.onClick = [this] { updateToggleState (&buttonA,   "filterTypeA");  };
-    buttonB.onClick = [this] { updateToggleState (&buttonB,   "filterTypeB"); };
-    buttonA.setRadioGroupId (FilterButtons);
-    buttonB.setRadioGroupId (FilterButtons);
+    addAndMakeVisible(AButton);
+    addAndMakeVisible(BButton);
+    AButton.setButtonText("filterType A");
+    BButton.setButtonText("filterType B");
+    AButton.setLookAndFeel(&lightLookAndFeel);
+    BButton.setLookAndFeel(&lightLookAndFeel);
+    AButton.setClickingTogglesState(true);
+    BButton.setClickingTogglesState(true);
+    AButton.setRadioGroupId(2001);
+    BButton.setRadioGroupId(2001);
+    AButton.setToggleState(true, juce::dontSendNotification);
+    BButton.setToggleState(false, juce::dontSendNotification);
+    AButton.onClick = [this]() {
+        if (AButton.getToggleState()){
+        valueTreeState.getParameter("multype")->beginChangeGesture();
+        valueTreeState.getParameter("multype")->setValueNotifyingHost(0.0f);
+        valueTreeState.getParameter("multype")->endChangeGesture();
+        }
+    };
+    BButton.onClick = [this]() {
+        if (BButton.getToggleState()){
+        valueTreeState.getParameter("multype")->beginChangeGesture();
+        valueTreeState.getParameter("multype")->setValueNotifyingHost(1.0f);
+        valueTreeState.getParameter("multype")->endChangeGesture();
+        }
+    };
 
     addAndMakeVisible(dial1Slider);
     dial1Attachment.reset (new SliderAttachment (valueTreeState, "direction", dial1Slider));
@@ -67,12 +85,12 @@ void CustomAudioEditor::resized()
     const int componentHeight = (area.getHeight() - 60) / 3;
     const int padding = 20;         
 
-    buttonA.setBounds(padding, padding, componentWidth1 , componentHeight);
-    buttonB.setBounds(buttonA.getRight(), padding, componentWidth1 , componentHeight);
+    AButton.setBounds(padding, padding, componentWidth1 , componentHeight);
+    BButton.setBounds(AButton.getRight(), padding, componentWidth1 , componentHeight);
 
-    dial1Slider.setBounds(padding,  buttonA.getBottom() +padding , componentWidth1 ,  componentHeight * 2);
-    dial2Slider.setBounds(dial1Slider.getRight() ,  buttonA.getBottom() + padding, componentWidth1 ,  componentHeight * 2);
-    dial3Slider.setBounds(dial2Slider.getRight(),  buttonA.getBottom()+ padding, componentWidth1 ,  componentHeight * 2);
+    dial1Slider.setBounds(padding,  AButton.getBottom() +padding , componentWidth1 ,  componentHeight * 2);
+    dial2Slider.setBounds(dial1Slider.getRight() ,  AButton.getBottom() + padding, componentWidth1 ,  componentHeight * 2);
+    dial3Slider.setBounds(dial2Slider.getRight(),  AButton.getBottom()+ padding, componentWidth1 ,  componentHeight * 2);
 
     label1.setBounds(dial1Slider.getX(), dial1Slider.getY(), dial1Slider.getWidth(),dial1Slider.getTextBoxHeight() );
     label2.setBounds(dial2Slider.getX(), dial2Slider.getY(), dial2Slider.getWidth(),dial2Slider.getTextBoxHeight() );
