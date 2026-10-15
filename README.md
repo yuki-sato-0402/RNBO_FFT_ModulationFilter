@@ -1,13 +1,13 @@
 # RNBO_FFT_ModulationFilter
-This is a Filter combining fft~ and oscillator by RNBO (Max Msp).
+**A real-time FFT Modulation Filter plugin (VST3 / AU / Standalone)**
 
-
-
-
-I have also arranged the code to use the [AudioProcessorValueTreeState](https://docs.juce.com/master/classAudioProcessorValueTreeState.html).
-Built from the [rnbo.example.juce](https://github.com/Cycling74/rnbo.example.juce).  
-
-For *Getting Started*, please refer to the original repository. Also included in this repository is the C++ program output from RNBO in `export/`. And Max patch is included in patches/.
+## Key Features
+- **Multi-Format Support**: Works as a **VST3 plugin, AU (Audio Unit) plugin, and Standalone application**.
+- **Dynamic Window Control**: Real-time control over the window's frequency, direction, and shape (duty cycle).
+- **JUCE Integration**: Uses `AudioProcessorValueTreeState` for robust parameter management and full DAW automation.
+  
+Built from the [rnbo.example.juce](https://github.com/Cycling74/rnbo.example.juce) template.  
+The C++ source exported from RNBO is in export/, and the original Max patch is in patches/.
 
 ## System Algorithm
 This system utilizes the property that **convolution in the time domain** = **multiplication in the frequency domain**, and is a filter that is expressed by multiplying a window function in the frequency domain.  
